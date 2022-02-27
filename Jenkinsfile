@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        bat 'lancement de build Gradle'
+        bat(script: 'lancement de build Gradle', returnStatus: true)
       }
     }
 
