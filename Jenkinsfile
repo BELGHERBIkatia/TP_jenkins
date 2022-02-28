@@ -11,7 +11,11 @@ pipeline {
     }
 
    
-
+stage('Cucumber') {
+          steps {
+            cucumber(fileIncludePattern: '**/Cucumber.json', buildStatus: 'Unstable', jsonReportDirectory: 'C:\Users\TRISTAR\Desktop\katia')
+          }
+        }
   
 
 
