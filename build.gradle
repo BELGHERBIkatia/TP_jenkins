@@ -19,7 +19,7 @@ repositories {
 
 publishing {
     repositories {
-       maven {
+        maven {
             url 'https://mymavenrepo.com/repo/o2KRztCf0d0EH9CgeQe5/'
             credentials {
                 username 'myMavenRepo'
