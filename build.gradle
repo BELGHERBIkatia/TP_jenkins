@@ -16,7 +16,7 @@ repositories {
     mavenCentral()
 }
 
-
+/*
 publishing {
     repositories {
         maven {
@@ -35,7 +35,7 @@ publishing {
     }
 }
 
-
+*/
 
 
 
