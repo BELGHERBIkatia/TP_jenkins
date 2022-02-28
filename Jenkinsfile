@@ -9,6 +9,7 @@ pipeline {
         archiveArtifacts 'build/libs/*.jar'
       }
     }
+
     stage('Mail notification') {
       steps {
         mail(subject: 'notification', body: 'hello', cc: 'ik_belgherbi@esi.dz', from: 'ik_belgherbi@esi.dz')
@@ -16,8 +17,22 @@ pipeline {
     }
 
     stage('Test reporting') {
-      steps {
-        cucumber(fileIncludePattern: '**/Cucumber.json', buildStatus: 'Unstable', jsonReportDirectory: 'C:\\Users\\TRISTAR\\Desktop\\katia')
+      parallel {
+        stage('Test reporting') {
+          steps {
+            cucumber(fileIncludePattern: '**/Cucumber.json', buildStatus: 'Unstable', jsonReportDirectory: 'C:\\Users\\TRISTAR\\Desktop\\katia')
+          }
+        }
+
+        stage('code analysis') {
+          steps {
+            withSonarQubeEnv('sonar') {
+              bat 'gradle sonarqube'
+            }
+
+          }
+        }
+
       }
     }
 
@@ -32,11 +47,7 @@ pipeline {
       steps {
         slackSend(baseUrl: 'https://hooks.slack.com/services/', token: 'T02RPFZGBHP/B02SUM6RKCK/A00xKjCwfofPcyQAZ0i5dP5F', message: 'slack notification')
       }
-      
     }
-
-    
-    
 
   }
 }
