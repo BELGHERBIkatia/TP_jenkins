@@ -32,6 +32,7 @@ pipeline {
       steps {
         slackSend(baseUrl: 'https://hooks.slack.com/services/', token: 'T02RPFZGBHP/B02SUM6RKCK/A00xKjCwfofPcyQAZ0i5dP5F', message: 'slack notification')
       }
+      
     }
 
     
