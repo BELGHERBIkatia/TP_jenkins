@@ -4,21 +4,15 @@ pipeline {
     stage('build') {
       steps {
         bat 'gradle build'
+          bat 'gradle javadoc'
+         bat 'gradle test'
         archiveArtifacts 'build/libs/*.jar'
       }
     }
 
-    stage('test') {
-      steps {
-        bat 'gradle test'
-      }
-    }
+   
 
-    stage('documentation') {
-      steps {
-        bat 'gradle javadoc'
-      }
-    }
+  
 
 
     stage('deploy') {
