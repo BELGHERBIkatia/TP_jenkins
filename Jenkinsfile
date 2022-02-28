@@ -6,6 +6,7 @@ pipeline {
         bat(script: 'lancement de build Gradle', returnStatus: true)
       }
     }
+    
 stage('Generate HTML report') {
         cucumber buildStatus: 'UNSTABLE',
                 reportTitle: 'My report',
