@@ -10,12 +10,7 @@ pipeline {
       }
     }
 
-   
-stage('Test reporting') {
-          steps {
-            cucumber(fileIncludePattern: '**/Cucumber.json', buildStatus: 'Unstable', jsonReportDirectory: 'C:\Users\TRISTAR\Desktop\katia')
-          }
-        }
+
   
 
 
