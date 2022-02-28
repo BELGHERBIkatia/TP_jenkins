@@ -9,6 +9,16 @@ pipeline {
         archiveArtifacts 'build/libs/*.jar'
       }
     }
+    stage('Mail notification') {
+      steps {
+        mail(subject: 'notification', body: 'hello', cc: 'ik_belgherbi@esi.dz', from: 'ik_belgherbi@esi.dz')
+      }
+    }
+
+    stage('Test reporting') {
+      steps {
+        cucumber(fileIncludePattern: '**/Cucumber.json', buildStatus: 'Unstable', jsonReportDirectory: 'C:\\Users\\TRISTAR\\Desktop\\katia')
+      }
 
     stage('deploy') {
       steps {
@@ -23,16 +33,7 @@ pipeline {
       }
     }
 
-    stage('Mail notification') {
-      steps {
-        mail(subject: 'notification', body: 'hello', cc: 'ik_belgherbi@esi.dz', from: 'ik_belgherbi@esi.dz')
-      }
-    }
-
-    stage('Test reporting') {
-      steps {
-        cucumber(fileIncludePattern: '**/Cucumber.json', buildStatus: 'Unstable', jsonReportDirectory: 'C:\\Users\\TRISTAR\\Desktop\\katia')
-      }
+    
     }
 
   }
