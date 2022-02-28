@@ -17,19 +17,8 @@ pipeline {
     }
 
     stage('Test reporting') {
-      parallel {
-        stage('Test reporting') {
-          steps {
-            cucumber(fileIncludePattern: '**/Cucumber.json', buildStatus: 'Unstable', jsonReportDirectory: 'C:\\Users\\TRISTAR\\Desktop\\katia')
-          }
-        }
-
-        stage('code analysis') {
-          steps {
-            withSonarQubeEnv 'sonar'
-          }
-        }
-
+      steps {
+        cucumber(fileIncludePattern: '**/Cucumber.json', buildStatus: 'Unstable', jsonReportDirectory: 'C:\\Users\\TRISTAR\\Desktop\\katia')
       }
     }
 
